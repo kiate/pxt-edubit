@@ -95,7 +95,35 @@ namespace edubitRgbBit {
         rgbBit.show();
         basic.pause(0);
     }
-
+    function shortcut (num: number, text: string, l: number) {
+        return convert_from_hex_base_10(16, text.substr(num, l))
+    }
+    /** 
+     * color in hex
+     */
+    //% weight=0
+    //% blockGap=40
+    //% blockId="edubit_set_pixel_color_hex"
+    //% block="#|%color"
+    //% advanced=true
+    export function hex_rgb (color: string) {
+        if (color.length == 6) {
+            return edubitRgbBit.rgb(shortcut(0, color, 2), shortcut(2, color, 2), shortcut(4, color, 2))
+        } else if (color.length == 3) {
+            return edubitRgbBit.rgb(shortcut(0, color, 1) * 11, shortcut(1, color, 1) * 11, shortcut(2, color, 1) * 11)
+        }
+        return 0x00000
+    }
+    function convert_from_hex_base_10 (base: number, num: string) {
+        let temp_val = 0
+        for (let index = 0; index <= num.length - 1; index++) {
+            temp_val += (((a_z().indexOf(num.charAt(index))) % (a_z().length / 2)) * base ** (num.length - (index + 1)))
+        } 
+        return temp_val
+    }
+    function a_z() {
+        return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwxyz"
+    }
 
     /**
      * Show a rainbow pattern on all RGB pixels.
