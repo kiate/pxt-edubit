@@ -96,7 +96,18 @@ namespace edubitRgbBit {
         basic.pause(0);
     }
     function shortcut (num: number, text: string, l: number) {
-        return convert_from_hex_base_10(16, text.substr(num, l))
+        return Math.constrain(convert_from_hex_base_10(16, text.substr(num, l)), 0, 255)
+    }
+    /** 
+     * color in hex
+     */
+    //% weight=0
+    //% blockGap=40
+    //% blockId="edubit_set_pixel_color_HEX"
+    //% block="red:|$R|green:|$G|blue:|$B"
+    //% advanced=true
+    export function hex_RGB (R: string, G: string, B: string) {
+        return hex_rgb("" + R + G + B)
     }
     /** 
      * color in hex
