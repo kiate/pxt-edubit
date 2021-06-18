@@ -302,8 +302,8 @@ namespace edubitRgbBit {
     //     return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwxyz"
     // }
 
-    function convert_hex_to_base_10(hex_color: string) {
-        return parseInt('0x' + hex_color)
+    function convert_hex_to_int(hex_color: string) {
+        return parseInt(hex_color, 16)
     }
     
     /** 
@@ -318,7 +318,7 @@ namespace edubitRgbBit {
     //% block="red %red green %green blue %blue"
     //% advanced=true
     export function rgb_hex_separate(red: string, green: string, blue: string): number {
-        return edubitRgbBit.rgb(convert_hex_to_base_10(red), convert_hex_to_base_10(green), convert_hex_to_base_10(blue))
+        return edubitRgbBit.rgb(convert_hex_to_int(red), convert_hex_to_int(green), convert_hex_to_int(blue))
     }
 
 
@@ -332,7 +332,7 @@ namespace edubitRgbBit {
     //% block="#|%color"
     //% advanced=true
     export function rgb_hex(color: string): number {
-        return edubit.limit(convert_hex_to_base_10(color), 0, 16777215)
+        return edubit.limit(convert_hex_to_int(color), 0, 16777215)
     }
 
 
