@@ -332,7 +332,7 @@ namespace edubitRgbBit {
     //% block="#|%color"
     //% advanced=true
     export function rgb_hex(color: string): number {
-        return edubit.limit(convert_hex_to_base_10(color), 0, 16,777,215)
+        return edubit.limit(convert_hex_to_base_10(color), 0, 16777215)
     }
 
 
