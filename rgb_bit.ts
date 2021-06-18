@@ -302,7 +302,7 @@ namespace edubitRgbBit {
     //     return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwxyz"
     // }
 
-    function convert_hex_to_base_10 (hex_color: string) {
+    function convert_hex_to_base_10(hex_color: string) {
         return parseInt('0x' + hex_color)
     }
     
@@ -317,7 +317,7 @@ namespace edubitRgbBit {
     //% blockId="edubit_rgb_value_hex_separate"
     //% block="red %red green %green blue %blue"
     //% advanced=true
-    export function rgb_hex_separate (red: string, green: string, blue: string) {
+    export function rgb_hex_separate(red: string, green: string, blue: string): number {
         return edubitRgbBit.rgb(convert_hex_to_base_10(red), convert_hex_to_base_10(green), convert_hex_to_base_10(blue))
     }
 
@@ -331,8 +331,8 @@ namespace edubitRgbBit {
     //% blockId="edubit_rgb_value_hex"
     //% block="#|%color"
     //% advanced=true
-    export function rgb_hex (color: string) {
-        return edubitRgbBit.rgb(convert_hex_to_base_10(color.substr(0, 2)), convert_hex_to_base_10(color.substr(2, 2)), convert_hex_to_base_10(color.substr(4, 2)))
+    export function rgb_hex(color: string): number {
+        return convert_hex_to_base_10(color)
     }
 
 
