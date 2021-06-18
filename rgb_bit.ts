@@ -42,7 +42,7 @@ enum RgbColors {
  * Blocks for RGB Bit.
  */
 //% weight=12 color=#ff8000 icon="\uf110" block="RGB Bit"
-//% groups=['Contributed by Community']
+//% group="Contributed by Community"
 namespace edubitRgbBit {
     // Colors array for each pixel.
     let colorsArray: number[] = [];
@@ -321,6 +321,11 @@ namespace edubitRgbBit {
     // }
 
 
+    function convert_hex_to_int(hex_color: string): number {
+        return parseInt(hex_color, 16)
+    }
+    
+
     /** 
      * Converts hexadecimal color to color format.
      * @param color Hex value (0x000000 - 0xFFFFFF). eg: "FFFFFF"
@@ -333,7 +338,7 @@ namespace edubitRgbBit {
     //% advanced=true
     export function colors_hex(color: string): number {
         //if (color.length == 6) {
-            return edubit.limit(+color, 0, 16777215)
+            return edubit.limit(convert_hex_to_int(color), 0, 16777215)
             //return edubitRgbBit.rgb(shortcut(0, hex_color, 2), shortcut(2, hex_color, 2), shortcut(4, hex_color, 2))
         //} else if (color.length == 3) {
         //    return edubit.limit(convert_hex_to_int(color), 0, 16777215)
@@ -355,7 +360,7 @@ namespace edubitRgbBit {
     //% block="red %red green %green blue %blue"
     //% advanced=true
     export function rgb_hex_separate(red: string, green: string, blue: string): number {
-        return edubitRgbBit.rgb(+red, +green, +blue)
+        return edubitRgbBit.rgb(convert_hex_to_int(red), convert_hex_to_int(green), convert_hex_to_int(blue))
     }
 }
 
