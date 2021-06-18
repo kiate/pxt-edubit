@@ -287,7 +287,7 @@ namespace edubitRgbBit {
 
     // Helper functions
     // function shortcut (num: number, text: string, l: number) {
-    //     return Math.constrain(convert_from_hex_base_10(16, text.substr(num, l)), 0, 255)
+    //     return Math.constrain(convert_from_hex_base_10(16, text.substr(0, l)), 0, 255)
     // }
     
     // function convert_from_hex_base_10 (base: number, num: string) {
@@ -311,20 +311,36 @@ namespace edubitRgbBit {
      * @param red Hex value of the red channel (00 - FF). eg: "FF"
      * @param green Hex value of the green channel (00 - FF). eg: "FF"
      * @param blue Hex value of the blue channel (00 - FF). eg: "FF"
- */
-    //% weight=0
+    */
+    //% weight=10
     //% blockGap=40
     //% blockId="edubit_rgb_value_hex_separate"
     //% block="red %red green %green blue %blue"
     //% advanced=true
     export function rgb_hex_separate (red: string, green: string, blue: string) {
-        return edubitRgbBit.rgb(convert_hex_to_base_10 (red), convert_hex_to_base_10 (green), convert_hex_to_base_10 (blue))
+        return edubitRgbBit.rgb(convert_hex_to_base_10(red), convert_hex_to_base_10(green), convert_hex_to_base_10(blue))
     }
+
+
+    /** 
+     * Converts 6-digit hexadecimal color into RGB color.
+     * @param color 6-digit Hex value (0x000000 - 0xFFFFFF). eg: "FFFFFF"
+    */
+    //% weight=11
+    //% blockGap=40
+    //% blockId="edubit_rgb_value_hex"
+    //% block="#|%color"
+    //% advanced=true
+    export function rgb_hex (color: string) {
+        return edubitRgbBit.rgb(convert_hex_to_base_10(color.substr(0, 2)), convert_hex_to_base_10(color.substr(2, 2)), convert_hex_to_base_10(color.substr(4, 2)))
+    }
+
+
     // /** 
     //  * color in hex
     //  * 
     //  */
-    // //% weight=0
+    // //% weight=11
     // //% blockGap=40
     // //% blockId="edubit_set_pixel_color_hex"
     // //% block="#|%hex_color"
