@@ -285,48 +285,16 @@ namespace edubitRgbBit {
     }
 
 
-    // function shortcut (num: number, text: string, l: number) {
-    //     return Math.constrain(convert_from_hex_base_10(16, text.substr(0, l)), 0, 255)
-    // }
-    
-    // function convert_from_hex_base_10 (base: number, num: string) {
-    //     let temp_val = 0
-    //     for (let index = 0; index <= num.length - 1; index++) {
-    //         temp_val += (((a_z().indexOf(num.charAt(index))) % (a_z().length / 2)) * base ** (num.length - (index + 1)))
-    //     } 
-    //     return temp_val
-    // }
-    
-    // function a_z() {
-    //     return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwxyz"
-    // }
-
-    // /** 
-    //  * color in hex
-    //  * 
-    //  */
-    // //% weight=11
-    // //% blockGap=40
-    // //% blockId="edubit_set_pixel_color_hex"
-    // //% block="#|%hex_color"
-    // //% advanced=true
-    // export function hex_rgb (hex_color: string) {
-    //     if (hex_color.length == 6) {
-    //         return edubitRgbBit.rgb(shortcut(0, hex_color, 2), shortcut(2, hex_color, 2), shortcut(4, hex_color, 2))
-    //     } else if (hex_color.length == 3) {
-    //         return edubitRgbBit.rgb(shortcut(0, hex_color, 1) * 17, shortcut(1, hex_color, 1) * 17, shortcut(2, hex_color, 1) * 17)
-    //     }
-    //     return 0x000000
-    // }
-
-
+    /** 
+     * Helper to converts hexadecimal to integer.
+    */
     function convert_hex_to_int(hex_color: string): number {
         return parseInt(hex_color, 16)
     }
     
 
     /** 
-     * Converts hexadecimal color to color format.
+     * Converts hexadecimal string to color format.
      * @param color Hex value (0x000000 - 0xFFFFFF). eg: "FFFFFF"
     */
     //% weight=11
@@ -334,15 +302,11 @@ namespace edubitRgbBit {
     //% blockId="edubit_colors_hex"
     //% block="#|%color"
     //% advanced=true
-    //% group="Contributed by Community"
     export function colors_hex(color: string): number {
-        //if (color.length == 6) {
+        if (color.length == 6) {
             return edubit.limit(convert_hex_to_int(color), 0, 16777215)
-            //return edubitRgbBit.rgb(shortcut(0, hex_color, 2), shortcut(2, hex_color, 2), shortcut(4, hex_color, 2))
-        //} else if (color.length == 3) {
-        //    return edubit.limit(convert_hex_to_int(color), 0, 16777215)
-        //    //return edubitRgbBit.rgb(shortcut(0, hex_color, 1) * 17, shortcut(1, hex_color, 1) * 17, shortcut(2, hex_color, 1) * 17)
-        //}
+        }
+        return 0x000000
     }
 
 
@@ -357,9 +321,7 @@ namespace edubitRgbBit {
     //% blockId="edubit_rgb_value_hex"
     //% block="red %red green %green blue %blue"
     //% advanced=true
-    //% group="Contributed by Community"
-    export function rgb_hex_separate(red: string, green: string, blue: string): number {
+    export function rgb_hex(red: string, green: string, blue: string): number {
         return edubitRgbBit.rgb(convert_hex_to_int(red), convert_hex_to_int(green), convert_hex_to_int(blue))
     }
 }
-
